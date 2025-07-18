@@ -2,6 +2,15 @@
 
 A full-stack MERN application for managing tasks with role-based access control.
 
+---
+
+## Live Demo
+
+- **Frontend:** [frontend](https://devtaskmanager.vercel.app/)
+- **Backend API:** [backend](https://dev-task-manager-1rs9.onrender.com) 
+
+---
+
 ## Features
 
 - **User Authentication** - JWT-based signup/login
@@ -12,6 +21,8 @@ A full-stack MERN application for managing tasks with role-based access control.
 - **Responsive UI** - Built with React and Tailwind CSS
 - **Dark Mode** - Theme toggle support
 
+---
+
 ## Tech Stack
 
 - **Frontend:** React, Vite, Tailwind CSS, Radix UI
@@ -19,9 +30,12 @@ A full-stack MERN application for managing tasks with role-based access control.
 - **Authentication:** JWT tokens with bcrypt
 - **UI Components:** Shadcn/ui components
 
+---
+
 ## Installation
 
 ### Prerequisites
+
 - Node.js (v14+)
 - MongoDB
 - pnpm (recommended) or npm
@@ -69,43 +83,39 @@ A full-stack MERN application for managing tasks with role-based access control.
    pnpm dev
    ```
 
+---
+
+## Deployment Instructions
+
+### Frontend (Vercel)
+
+1. Push your code to GitHub.
+2. Go to [Vercel](https://vercel.com/) and import your frontend repository.
+3. Set the build command to `pnpm build` and output directory to `dist`.
+4. Set environment variables if needed.
+5. Deploy and note the provided URL.
+
+### Backend (Vercel/Render/Other)
+
+1. Push your backend code to GitHub.
+2. Deploy to your chosen platform (e.g., [Render](https://render.com/), [Vercel](https://vercel.com/), [Heroku](https://heroku.com/)).
+3. Set environment variables (`MONGO_URI`, `JWT_SECRET`, etc.).
+4. Deploy and note the API URL.
+
+---
+
 ## Usage
 
-### Access the Application
-- **Client:** http://localhost:5173
-- **Server API:** http://localhost:5000
+- **Client:** [https://devtaskmanager.vercel.app](https://devtaskmanager.vercel.app)
+- **Server API:** [https://devtaskmanager-api.vercel.app](https://devtaskmanager-api.vercel.app)
 
 ### Default Admin Account
+
 - **Username:** admin
 - **Email:** admin@example.com
 - **Password:** admin123
 
-### Creating Admin User
-If you need to create an admin user, run this script in the server directory:
-```bash
-node -e "
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const User = require('./models/User');
-require('dotenv').config();
-
-mongoose.connect(process.env.MONGO_URI).then(async () => {
-  const hashedPassword = await bcrypt.hash('admin123', 10);
-  await User.create({
-    username: 'admin',
-    email: 'admin@example.com',
-    password: hashedPassword,
-    role: 'admin'
-  });
-  console.log('Admin user created!');
-  process.exit(0);
-}).catch(console.error);
-"
-```
-
-### User Roles
-- **Admin:** Can view and manage all users' tasks
-- **Developer:** Can only manage their own tasks
+---
 
 ## Project Structure
 
@@ -126,6 +136,8 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
 └── README.md
 ```
 
+---
+
 ## API Endpoints
 
 ### Authentication
@@ -138,3 +150,45 @@ mongoose.connect(process.env.MONGO_URI).then(async () => {
 - `POST /api/tasks` - Create task
 - `PUT /api/tasks/:id` - Update task
 - `DELETE /api/tasks/:id` - Delete task
+
+---
+
+## CI/CD Pipeline
+
+The project uses GitHub Actions for continuous integration and deployment.
+
+### Example Workflow
+
+- On every push to `main`, the workflow:
+  - Installs dependencies
+  - Runs tests and linting
+  - Builds the project
+  - Deploys to Vercel/Render
+
+### Screenshots
+
+![CI/CD Build Passing](./docs/cicd-build.png)
+![CI/CD Deploy Step](./docs/cicd-deploy.png)
+
+---
+
+## Monitoring Setup
+
+- **Uptime Monitoring:** [UptimeRobot](https://uptimerobot.com/) monitors the backend API and frontend URLs.
+- **Error Tracking:** [Sentry](https://sentry.io/) is integrated for frontend error monitoring.
+- **Logging:** Backend logs are available via the deployment platform dashboard (e.g., Vercel/Render logs).
+
+### Example Monitoring Dashboard
+
+![UptimeRobot Dashboard](./docs/uptimerobot-dashboard.png)
+![Sentry Issues](./docs/sentry-issues.png)
+
+---
+
+## License
+
+MIT
+
+---
+
+> _Replace all placeholder URLs and image paths with your actual deployment and documentation links._
